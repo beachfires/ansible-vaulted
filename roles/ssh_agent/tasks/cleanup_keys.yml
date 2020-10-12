@@ -1,0 +1,8 @@
+---
+
+- name: Remove vault files from {{ temp_dir }}
+  file:
+    state: absent
+    path: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - deprecated_key.vault

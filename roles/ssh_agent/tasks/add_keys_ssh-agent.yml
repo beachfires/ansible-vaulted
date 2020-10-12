@@ -1,0 +1,17 @@
+---
+
+- name: Copy vault encrypted key(s) to /tmp
+  copy:
+    decrypt: no
+    dest: "{{ temp_dir }}/{{ item }}"
+    src: "../files/{{ item }}"
+  with_items:
+    - example-enc-key.vault
+
+- name: Add vault encrypted private ssh key(s) to ssh-agent
+  shell: "ansible-vault view {{ temp_dir }}/{{ item }} | ssh-add -t{{ key_life_secs }} -"
+  args:
+    chdir: "../"
+  with_items:
+    - example-enc-key.vault
+

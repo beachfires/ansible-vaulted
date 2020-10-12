@@ -1,0 +1,6 @@
+---
+
+# Temporary directory for storing vault encrypted private keys
+temp_dir: /tmp
+key_life_secs: 14400  #3 hours 
+
